@@ -17,6 +17,13 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow() override;
 
+private slots:
+
+
+    void on_actionSave_triggered();
+
+    void on_actionSave_as_triggered();
+
 private:
     Ui::MainWindow *ui;
 };
