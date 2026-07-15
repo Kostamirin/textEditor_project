@@ -23,9 +23,13 @@ private slots:
 
     void on_actionSave_as_triggered();
 
+    void on_actionOpen_file_triggered();
+
+    void on_textEdit_textChanged();
+
 private:
     Ui::MainWindow *ui;
-    bool file_is_save = false;
+
     QString File_path = "";
 };
 #endif // MAINWINDOW_H
