@@ -13,7 +13,8 @@ MainWindow::MainWindow(const QString &title, QWidget *parent)
 {
     ui->setupUi(this);
     this->setWindowTitle("Enter the text");
-    this->opened_tabs.push_back(Tabs_button("first opened"));
+
+
 }
 
 MainWindow::~MainWindow()
@@ -21,9 +22,33 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-bool MainWindow::saveToFile(const QString &filePath)
+bool MainWindow::saveToFile(const QString &filePath) //проблемма с сохранением при сохранении текста с 1 вкладки и переходе в другую и повторном сохранении не появляется окно сохранения и текст перезаписывается в тотже файл
 {
-    const QString text = ui->textEdit->toPlainText();
+     QString text;
+    int tab_index = ui->tabWidget->currentIndex();
+    QWidget *curet_tab = ui->tabWidget->widget(tab_index);
+    if(curet_tab)
+    {
+        QTextEdit *text_tab = curet_tab->findChild<QTextEdit*>();
+        if(text_tab)
+        {
+            text = text_tab->toPlainText();
+
+        }
+        else
+        {
+            QMessageBox::critical(this, "Error", QString("Can't find TextEdit"));
+            qDebug() << "Can't find TextEdit";
+            return false;
+        }
+    }
+    else
+    {
+        QMessageBox::critical(this, "Error", QString("Can't find tab"));
+        qDebug() << "Can't find tab";
+        return false;
+    }
+
     QFile file(filePath);
 
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
@@ -56,8 +81,8 @@ bool MainWindow::saveToFile(const QString &filePath)
     QFileInfo fileInfo(File_path);
     this->setWindowTitle(File_path);
     ui->statusbar->showMessage("File saved");
-    ui->pushButton_File->setText(fileInfo.baseName());
-    ui->pushButton_File->setStyleSheet("background-color: rgb(0, 111, 0);");
+    //здесь код для изменения заголовка и цвета выбраной страници
+
     qDebug() << "File saved:" << File_path;
     return true;
 }
@@ -120,13 +145,12 @@ void MainWindow::on_actionOpen_file_triggered()
     this->setWindowTitle(File_path);
     ui->statusbar->showMessage("File loaded");
     QFileInfo fileInfo(File_path);
-    ui->pushButton_File->setText(fileInfo.baseName());
-    ui->pushButton_File->setStyleSheet("background-color: rgb(0, 111, 0);");
+
 }
 
 void MainWindow::on_textEdit_textChanged()
 {
-    ui->pushButton_File->setStyleSheet("background-color:rgb(148, 110, 6);");
+
 }
 
 void MainWindow::on_actionCreate_New_triggered()
@@ -151,5 +175,20 @@ void MainWindow::on_pushButton_Add_clicked()
 void MainWindow::on_pushButton_File_clicked()
 {
     //if(this.currentFile !=  )
+}
+
+
+void MainWindow::on_tabWidget_currentChanged(int index)
+{
+    if(index == ui->tabWidget->count() - 1)
+    {
+        QWidget *new_tab = new QWidget;
+        QTextEdit *new_text_box = new QTextEdit(new_tab);
+        QVBoxLayout *new_loaut = new QVBoxLayout(new_tab);
+        new_loaut->addWidget(new_text_box);
+        new_tab->setLayout(new_loaut);
+        ui->tabWidget->insertTab(ui->tabWidget->count() - 2,new_tab,"Unsaved file");
+        ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-2);
+    }
 }
 

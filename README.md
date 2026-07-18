@@ -1,5 +1,5 @@
 # textEditor
-Zubr text editor is typical text editor writen on QT framework
+The typical text editor without any suspicious functions
 
 # How to use
 To use this text editor, download the files ... 
