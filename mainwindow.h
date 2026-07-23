@@ -40,6 +40,13 @@ private slots:
     void on_pushButton_File_clicked();
 
     void on_tabWidget_currentChanged(int index);
+    void on_actionOpen_folder_triggered();
+
+    void on_treeView_doubleClicked(const QModelIndex &index);
+
+    void on_actionCreate_new_tab_triggered();
+
+    void on_actionClose_tab_triggered();
 
 private:
 
