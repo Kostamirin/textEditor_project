@@ -6,26 +6,42 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>839</width>
-    <height>570</height>
+    <width>1039</width>
+    <height>694</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
+   <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <item>
+     <widget class="QTreeView" name="treeView">
+      <property name="maximumSize">
+       <size>
+        <width>300</width>
+        <height>650</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item>
      <widget class="QTabWidget" name="tabWidget">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="currentIndex">
        <number>0</number>
       </property>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="widget">
        <attribute name="title">
         <string>Unsaved file</string>
        </attribute>
-       <layout class="QGridLayout" name="gridLayout_2">
-        <item row="0" column="0">
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
          <widget class="QTextEdit" name="textEdit"/>
         </item>
        </layout>
@@ -44,7 +60,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>839</width>
+     <width>1039</width>
      <height>23</height>
     </rect>
    </property>
@@ -68,8 +84,31 @@
     <addaction name="actionCreate_New"/>
     <addaction name="actionClose"/>
    </widget>
+   <widget class="QMenu" name="menuTab">
+    <property name="title">
+     <string>Tab</string>
+    </property>
+    <addaction name="actionClose_tab"/>
+    <addaction name="actionCreate_new_tab"/>
+   </widget>
+   <widget class="QMenu" name="menuFile_tree">
+    <property name="title">
+     <string>File tree</string>
+    </property>
+    <addaction name="actionHide_file_tree"/>
+   </widget>
+   <widget class="QMenu" name="menuFont">
+    <property name="title">
+     <string>Font</string>
+    </property>
+    <addaction name="actionSet_size"/>
+    <addaction name="actionSet_font"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuWindow"/>
+   <addaction name="menuTab"/>
+   <addaction name="menuFile_tree"/>
+   <addaction name="menuFont"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionSave">
@@ -106,6 +145,31 @@
    </property>
    <property name="toolTip">
     <string>Close</string>
+   </property>
+  </action>
+  <action name="actionClose_tab">
+   <property name="text">
+    <string>Close tab</string>
+   </property>
+  </action>
+  <action name="actionCreate_new_tab">
+   <property name="text">
+    <string>Create new tab</string>
+   </property>
+  </action>
+  <action name="actionHide_file_tree">
+   <property name="text">
+    <string>Hide file tree</string>
+   </property>
+  </action>
+  <action name="actionSet_size">
+   <property name="text">
+    <string>Set size</string>
+   </property>
+  </action>
+  <action name="actionSet_font">
+   <property name="text">
+    <string>Set font</string>
    </property>
   </action>
  </widget>
