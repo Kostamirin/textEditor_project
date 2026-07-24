@@ -39,6 +39,15 @@ private slots:
 
     void on_pushButton_File_clicked();
 
+    void on_tabWidget_currentChanged(int index);
+    void on_actionOpen_folder_triggered();
+
+    void on_treeView_doubleClicked(const QModelIndex &index);
+
+    void on_actionCreate_new_tab_triggered();
+
+    void on_actionClose_tab_triggered();
+
 private:
 
     bool saveToFile(const QString &filePath);
@@ -47,7 +56,7 @@ private:
 
     int num_of_opened_windows = 1;
     int num_of_opened_tabs = 1;
-
+    std::vector<bool> List_saved_files;
     QString File_path = "";
 };
 
