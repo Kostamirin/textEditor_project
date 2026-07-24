@@ -26,7 +26,7 @@ MainWindow::MainWindow(const QString &title, QWidget *parent)
 ///     2.Добавить настройки шрифта и размера текста
 ///     3.Ввести список txt схожих файлов которые откроются (под вопросом)
 ///     4 опц. Добавить перевод на русский
-///     5.Реализовать скрытие левого меню
+///     5.Реализовать скрытие левого меню (✅)
 ///
 /// from perforator-coder: Это уже хорошый блокнот но требующий улучшений и больше тестировки. Я не уверен есть ли ещё баги.
 MainWindow::~MainWindow()
@@ -249,6 +249,9 @@ void MainWindow::on_actionOpen_folder_triggered()
         qDebug() << "Can't find dir_path";
         return;
     }
+    if(file_tree_is_hide){
+        on_actionHide_file_tree_triggered();
+    }
     QFileSystemModel *model_dir = new QFileSystemModel(this);
     model_dir->setRootPath(dir_path);
     ui->treeView->setModel(model_dir);
@@ -379,6 +382,23 @@ void MainWindow::on_actionClose_tab_triggered()
         on_tabWidget_currentChanged(index);
     }
 
+
+}
+
+
+void MainWindow::on_actionHide_file_tree_triggered()
+{
+    if(!file_tree_is_hide){
+        ui->treeView->hide();
+        file_tree_is_hide = true;
+        ui->actionHide_file_tree->setText("Show file tree");
+    }
+    else
+    {
+        file_tree_is_hide = false;
+        ui->treeView->setVisible(true);
+        ui->actionHide_file_tree->setText("Hide file tree");
+    }
 
 }
 

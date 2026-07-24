@@ -48,6 +48,8 @@ private slots:
 
     void on_actionClose_tab_triggered();
 
+    void on_actionHide_file_tree_triggered();
+
 private:
 
     bool saveToFile(const QString &filePath);
@@ -58,6 +60,7 @@ private:
     int num_of_opened_tabs = 1;
     std::vector<bool> List_saved_files;
     QString File_path = "";
+    bool file_tree_is_hide = false;
 };
 
 

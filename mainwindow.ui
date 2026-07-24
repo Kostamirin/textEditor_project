@@ -91,9 +91,24 @@
     <addaction name="actionClose_tab"/>
     <addaction name="actionCreate_new_tab"/>
    </widget>
+   <widget class="QMenu" name="menuFile_tree">
+    <property name="title">
+     <string>File tree</string>
+    </property>
+    <addaction name="actionHide_file_tree"/>
+   </widget>
+   <widget class="QMenu" name="menuFont">
+    <property name="title">
+     <string>Font</string>
+    </property>
+    <addaction name="actionSet_size"/>
+    <addaction name="actionSet_font"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuWindow"/>
    <addaction name="menuTab"/>
+   <addaction name="menuFile_tree"/>
+   <addaction name="menuFont"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionSave">
@@ -140,6 +155,21 @@
   <action name="actionCreate_new_tab">
    <property name="text">
     <string>Create new tab</string>
+   </property>
+  </action>
+  <action name="actionHide_file_tree">
+   <property name="text">
+    <string>Hide file tree</string>
+   </property>
+  </action>
+  <action name="actionSet_size">
+   <property name="text">
+    <string>Set size</string>
+   </property>
+  </action>
+  <action name="actionSet_font">
+   <property name="text">
+    <string>Set font</string>
    </property>
   </action>
  </widget>
